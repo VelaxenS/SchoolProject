@@ -1,0 +1,32 @@
+﻿@model SchoolProject.Models.Student
+
+<html>
+    <body>
+        <style>
+            .bx {
+                font-weight : bold;
+                font-size : 25px;
+            }
+            .bx1 {
+                font-weight : bold;
+                font-size : 20px;
+                color : #15cf2d;
+            }
+        </style>
+        <div>
+            <p style="margin-left: auto;margin-right: auto;width: 30%; position : fixed; top : 130px; left : 600px" class="bx"> Öğrencinin kaydını silmek istediğinizie emin misiniz?</p>
+            <br></br>
+            <p class="bx">Öğrenci İsmi :</p><p class="bx1">@Html.DisplayFor(model=>model.Name)</p>
+            <br></br>
+            <p class="bx">Öğrenci Soyadı :</p><p class="bx1">@Html.DisplayFor(model=>model.Surname)</p> 
+            <br></br>
+            <p class="bx">Öğrenci Yaşı :</p><p class="bx1">@Html.DisplayFor(model=>model.Age)</p>
+            <form method="post" asp-action="Delete" asp-route-id="@Model.StudentID">
+                <input style="font-size : 25px; border-radius : 5px; position : fixed; top :330px; left : 660px" class="btn-danger" type="submit" value="Öğrenciyi Sil"></input>
+                <a style="font-size : 25px; position : fixed; top :330px; left : 870px" class="btn-outline-danger" asp-action="Index"> Geri Dön</a>
+            </form>
+           
+        </div>
+        
+    </body>
+</html>

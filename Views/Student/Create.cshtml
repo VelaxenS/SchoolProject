@@ -1,0 +1,24 @@
+﻿@model SchoolProject.Models.Student;
+
+<html>
+    <body>
+
+        <br></br>
+        <form style="text-align: center" method="post">
+            <label asp-for="Name"> Öğrenci İsmi : </label>
+            <input type="text" asp-for="Name" title=" Öğrenci ismini giriniz..."></input>
+            <br></br>
+            <label asp-for="Surname"> Öğrenci Soyadı : </label>
+            <input type="text" asp-for="Surname" title=" Öğrenci soyadını giriniz..."></input>
+            <br></br>
+            <label asp-for="Age"> Öğrenci yaşı : </label>
+            <input type="text" asp-for="Age" title=" Öğrenci yaşını giriniz..."></input>
+            <br></br>
+            <br></br>
+            <input type="submit" class="btn btn-primary" value=" Öğrenci ekle"></input> <button type="submit" asp-action="Index"> Geri dön</button>
+        </form>
+        <br></br>
+        <br></br>
+        <p style="text-align : center; color : red; font-weight : bold; font-size: 20px">@ViewBag.failMessage</p>
+    </body>
+</html>

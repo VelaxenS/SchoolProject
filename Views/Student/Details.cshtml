@@ -1,0 +1,104 @@
+﻿@model SchoolProject.ViewModels.StudentViewModel
+@{
+    IEnumerable<Course> courses = ViewData["Courses"] as IEnumerable<Course>;
+    IEnumerable<Enrollment> enrollments = ViewData["Enrollments"] as IEnumerable<Enrollment>;
+
+
+}
+<html>
+    <style>
+        .bx {
+                font-weight : bold;
+                font-size : 25px;
+            }
+        .bx1 {
+                font-weight : bold;
+                font-size : 25px;
+                color : #15cf2d;
+            }
+         .vl {
+                border-left: 6px solid black;
+                height: 600px;
+            }
+
+    </style>
+    <body>
+        <h1 style="text-align : left" >Öğrenci Bilgileri</h1>
+        <br></br>
+        <br></br>
+        <p class="bx" style=" display : inline-block">Öğrenci Adı : </p>
+        <p class="bx1" style="display : inline-block"> @Html.DisplayFor(model => model.Student.Name)</p>
+        <br></br>
+        <p class="bx" style=" display : inline-block">Öğrenci Soyadı : </p>
+        <p class="bx1" style="display : inline-block"> @Html.DisplayFor(model => model.Student.Surname)</p>
+        <br></br>
+        <p class="bx" style=" display : inline-block">Öğrenci Yaşı : </p>
+        <p class="bx1" style="display : inline-block"> @Html.DisplayFor(model => model.Student.Age)</p>
+        <h1 style="position : absolute; top : 80px; left: 700px"> Öğrencinin Aldığı dersler</h1>
+        <div style="position : absolute; left : 600px; top: 100px" class="vl"></div>
+        <a style="font-size : 25px;position : absolute; left: 1400px; top : 150px" class="btn btn-primary" asp-action="Index"> Geri dön</a>
+        
+    <div style="position : absolute; top : 200px; left: 700px">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        Ders Adı
+                    </td>
+                    <td>
+                        Kredisi
+                    </td>
+                    <td>
+                        Notu
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var scourse in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => scourse.Course.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => scourse.Course.Credit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => scourse.Grade)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br></br>
+        <br></br>
+        <p> (Ders Adı | Ders kodu | Ders kredisi) olmak üzere</p>
+        <form method="post" asp-action="Details">
+            <input type="hidden" name="StudentID" id="StudentID" asp-for="@Model.Student.StudentID"></input>
+            <select name="CourseID" id="CourseID" style="font-size : 25px">
+                @foreach(var course in Model.Courses)
+                {
+                    <option value="@course.CourseID">
+                        @Html.DisplayFor(model => course.Title) |
+                        @Html.DisplayFor(model => course.CourseID) |
+                        @Html.DisplayFor(model => course.Credit)
+                    </option>
+                }
+            </select>
+            <select name="Grade" id="Grade" style="font-size: 25px">
+                @foreach(var grade in Enum.GetNames(typeof(Grade)))
+                {
+                    <option>
+                        @Html.DisplayFor(model => grade)
+                    </option>
+                }
+            </select>
+            
+
+            <input style="font-size : 25px" type="submit" class="btn btn-success" value="Ders Ekle"></input>
+        </form>
+
+        
+    </div>
+    </body>
+</html>
